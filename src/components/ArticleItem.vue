@@ -1,7 +1,7 @@
 <template>
     <div class="article">   
-        <h5><a :href="url">{{title}}</a></h5>
-        <small class="text-muted" v-html="meta"></small>
+        <h2 class="title"><a :href="url">{{title}}</a></h2>
+        <p class="summary" v-html="meta"></p>
     </div>    
 </template>
 
@@ -26,5 +26,20 @@
 <style>
     .article{
         margin-bottom:30px;
+    }
+    .title{
+        font-size: 18px;
+        line-height: 1.7em;
+        margin-bottom: 8px;
+        color: #000;
+    }
+    .summary{
+        color: #737373;
+        font-size: 16px;
+        line-height: 1.85em;
+        margin-bottom: 24px;
+    }
+    a{
+        text-decoration: none;
     }
 </style>

@@ -31,21 +31,14 @@ export default {
     }
   },
   methods:{
-    init:function(){
-         axios.get('http://localhost:1337/articles/init')
-         .then(response=>{
-           //this.msg = response.data;
-           console.info(response.data);
-        })
-    }
   },
   mounted(){
-     axios.get('http://localhost:1337/articles/init')
+     axios.get('http://118.24.52.85:1337/articles/init')
          .then(response=>{
            console.info(response.data);
            window.localStorage.setItem('token',response.data.token);
         
-          axios.get('http://localhost:1337/articles/'+response.data.token+'/1')
+          axios.get('http://118.24.52.85:1337/articles/'+response.data.token+'/1')
           .then(res=>{
               //this.msg = res.data;
               this.list = res.data.list;
@@ -70,5 +63,12 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.hello{
+  padding-left:20px;
+  padding-right:20px;
+  margin-top:20px;
+  font-family:"DENGXIAN";
 }
 </style>
