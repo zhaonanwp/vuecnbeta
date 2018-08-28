@@ -7,6 +7,9 @@
       v-bind:meta="article.hometext"
       v-bind:key="article.sid"
       v-bind:url="article.url_show"
+      v-bind:publish_time="article.inputtime" 
+      v-bind:thumb="article.thumb"
+      v-bind:mview="article.mview"
     >
     </article-item>
   </div>
