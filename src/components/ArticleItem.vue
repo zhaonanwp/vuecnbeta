@@ -10,7 +10,7 @@
                 </div>
             </div>  
             <div class="item">
-                <img class="thumb" :src="thumb"/>
+                <!--<img class="thumb" :src="thumb"/>-->
             </div>
         </div>
         <hr />    
@@ -32,7 +32,7 @@
             url:String,
             publish_time:String,
             thumb:String,
-            mview:Number
+            mview:String
         },
         
     }

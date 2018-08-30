@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-
+  <div class="hello" v-scroll="next">
     <article-item 
       v-for="article in list"
       v-bind:title="article.title"
@@ -22,32 +21,59 @@ import axios from 'axios'
 export default {
   name: 'HelloWorld',
   components:{ArticleItem},
-  props: {
-    msg: {
-      type:String,
-      default:'Welcome'
-    }
-  },
   data:function () {
     return {
-      list:[]
+      list:[],
+      page:1,
+      loading:false,
+      token:''
     }
   },
   methods:{
+    loadMore(){
+         axios.get('http://118.24.52.85:1337/articles/'+ this.token+'/'+ this.page)
+          .then(res=>{
+              debugger;
+              this.list = this.list.concat(res.data.list);
+              this.loading = false;
+        })
+    },
+    next(){
+      if(this.loading){
+        return;
+      }
+      this.loading = true;
+      this.page++;
+      this.loadMore();
+
+      console.info('this way');
+    }
   },
   mounted(){
      axios.get('http://118.24.52.85:1337/articles/init')
          .then(response=>{
            console.info(response.data);
+           this.token = response.data.token;
            window.localStorage.setItem('token',response.data.token);
         
-          axios.get('http://118.24.52.85:1337/articles/'+response.data.token+'/1')
-          .then(res=>{
-              //this.msg = res.data;
-              this.list = res.data.list;
-          })
-        })
+           this.loadMore();
+      })
+  },
+  directives:{
+      scroll:{
+      bind:function(el,binding){
+       window.addEventListener('scroll', ()=> {
+
+        if(el.clientHeight >0 && document.documentElement.scrollTop + window.innerHeight >= el.clientHeight) {
+          
+           console.log('load data');
+           let fnc = binding.value;   
+           fnc(); 
+        }
+      })
+    }
   }
+}
 }
 </script>
 
