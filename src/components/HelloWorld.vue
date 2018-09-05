@@ -21,7 +21,7 @@
 
 <script>
 import ArticleItem from "@/components/ArticleItem";
-import axios from "axios";
+import request from "@/utils/request";
 
 export default {
   name: "HelloWorld",
@@ -36,14 +36,11 @@ export default {
   },
   methods: {
     loadMore() {
-      axios
-        .get(
-          "http://118.24.52.85:1337/articles/" + this.token + "/" + this.page
-        )
-        .then(res => {
-          this.list = this.list.concat(res.data.list);
-          this.loading = false;
-        });
+      request.get("articles/" + this.token + "/" + this.page).then(res => {
+        debugger;
+        this.list = this.list.concat(res.data.list);
+        this.loading = false;
+      });
     },
     next() {
       if (this.loading) {
@@ -57,33 +54,22 @@ export default {
     }
   },
   mounted() {
-    if (this.list.length==0) {
+    if (this.list.length == 0) {
       this.loading = true;
-      axios.get("http://118.24.52.85:1337/articles/init").then(response => {
+      request.get("articles/init").then(response => {
         console.info(response.data);
         this.token = response.data.token;
         window.localStorage.setItem("token", response.data.token);
-
-        this.loading = false;
-        this.loadMore();
       });
     }
   },
+
   directives: {
     scroll: {
       bind: function(el, binding) {
         window.addEventListener("scroll", () => {
-          if (
-            el.clientHeight > 0 &&
-            document.documentElement.scrollTop +
-              document.body.scrollTop +
-              window.innerHeight >=
-              el.clientHeight
-          ) {
-            console.log("load data");
-            let fnc = binding.value;
-            fnc();
-          }
+          this.loading = false;
+          this.loadMore();
         });
       }
     }
