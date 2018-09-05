@@ -16,7 +16,7 @@
 
 <script>
 import ArticleItem from '@/components/ArticleItem'
-import axios from 'axios'
+import request from '@/utils/request'
 
 export default {
   name: 'HelloWorld',
@@ -31,7 +31,7 @@ export default {
   },
   methods:{
     loadMore(){
-         axios.get('http://118.24.52.85:1337/articles/'+ this.token+'/'+ this.page)
+         request.get('articles/'+ this.token+'/'+ this.page)
           .then(res=>{
               debugger;
               this.list = this.list.concat(res.data.list);
@@ -50,7 +50,7 @@ export default {
     }
   },
   mounted(){
-     axios.get('http://118.24.52.85:1337/articles/init')
+     request.get('articles/init')
          .then(response=>{
            console.info(response.data);
            this.token = response.data.token;

@@ -1,8 +1,11 @@
 import axios from 'axios'
 
-const service = axios.create({
-    baseURL :'http://http://118.24.52.85:1337',
+const request = axios.create({
+    baseURL : process.env.VUE_APP_APIURL,
     timeout:5000
 });
 
-export default service
+debugger;
+var api = process.env.VUE_APP_APIURL;
+
+export default request;
