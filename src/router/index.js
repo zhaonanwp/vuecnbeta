@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import ArticleDetail from '@/components/ArticleDetail'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,12 @@ export default new VueRouter({
         {
             path: '/hello',
             component: HelloWorld
+        },
+        {
+            path:'/detail/:sid',
+            name:'detail',
+            component:ArticleDetail,
+            props: true
         }
     ]
 })

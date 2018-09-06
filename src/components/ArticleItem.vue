@@ -1,8 +1,9 @@
 <template>
     <div>
-        <div class="article"> 
+        <div class="article">
+
             <div class="item">
-                <h2 class="title"><a :href="url">{{title}}</a></h2>
+                <h2 class="title"> <router-link :to="{ name:'detail', params: { sid:sid }} ">{{title}}</router-link></h2>
                 <p class="summary" v-html="meta"></p>
                 <div class="meta">
                     <span class="publish-time">发布于 {{publish_time}}</span>
@@ -20,21 +21,7 @@
 <script>
     export default {
         name:'ArticleItem',
-        props:{
-            title:{
-                type:String,
-                default:'title'
-            },
-            meta:{
-                type:String,
-                default:'meta'
-            },
-            url:String,
-            publish_time:String,
-            thumb:String,
-            mview:String
-        },
-        
+        props:[ 'title', 'meta', 'sid', 'publish_time', 'mview'],
     }
 </script>
 
