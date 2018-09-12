@@ -1,5 +1,9 @@
 <template>
+
     <div>
+        <div class="header">
+          <button @:click="goBack">返回</button>
+        </div>
         <div class="title">
             {{title}}
         </div>
@@ -31,6 +35,7 @@ export default {
   },
   methods: {
     loadHtml(sid) {
+      debugger;
       axios.get("http://localhost:1337/articles/detail/" + sid).then(res => {
         console.info(res);
         let data = res.data;
@@ -38,6 +43,9 @@ export default {
         this.summary = data.summary;
         this.content = data.content;
       });
+    }, 
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
   },
   created() {
@@ -47,5 +55,5 @@ export default {
 </script>
 
 <style>
-
+  
 </style>

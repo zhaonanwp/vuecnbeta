@@ -1,43 +1,42 @@
 <template>
   <div id="app">
-    <div class="header">
-      <a v-on:click="goBack">back</a>
-    </div>
     <div class="container">
-    <keep-alive include="HelloWorld">
-        <router-view ></router-view>
-    </keep-alive>
-    
+      <keep-alive include="HelloWorld">
+        <router-view></router-view>
+      </keep-alive>
     </div>
-   
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'app',
+  name: "app",
   methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 10px;
 }
-a{
+a {
   color: #036;
 }
-.header{
-  display: fixed;
+.header {
+  position: fixed;
+  background-color: cadetblue;
+  height: 30px;
+  z-index: 9999;
+  width: 100%;
+  margin-top: -20px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  padding-top: 5px;
+  max-width: 600px;
 }
 </style>

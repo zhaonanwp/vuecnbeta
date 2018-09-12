@@ -1,5 +1,8 @@
 <template>
   <div class="hello" v-scroll="next">
+    <div class="header">
+      Cnbeta
+    </div>
     <article-item 
       v-for="article in list"
       v-bind:title="article.title"
@@ -15,7 +18,6 @@
     <div class="bottom">
           <div class="spinner spinnerOne" v-if="loading"></div>
     </div>
-
   </div>
 </template>
 
@@ -37,7 +39,6 @@ export default {
   methods: {
     loadMore() {
       getList(this.token, this.page).then(res => {
-        debugger;
         this.list = this.list.concat(res.data.list);
         this.loading = false;
       });
@@ -57,7 +58,6 @@ export default {
     if (this.list.length == 0) {
       this.loading = true;
       getToken().then(response => {
-        console.info(response.data);
         this.token = response.data.token;
         window.localStorage.setItem("token", response.data.token);
         this.loadMore();
@@ -69,7 +69,6 @@ export default {
     scroll: {
       bind: function(el, binding) {
         window.addEventListener("scroll", () => {
-          this.loading = false;
           this.loadMore();
         });
       }
