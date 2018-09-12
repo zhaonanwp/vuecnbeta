@@ -21,7 +21,7 @@
 
 <script>
 import ArticleItem from "@/components/ArticleItem";
-import request from "@/utils/request";
+import {getList,getToken} from '@/service/articleService';
 
 export default {
   name: "HelloWorld",
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     loadMore() {
-      request.get("articles/" + this.token + "/" + this.page).then(res => {
+      getList(this.token, this.page).then(res => {
         debugger;
         this.list = this.list.concat(res.data.list);
         this.loading = false;
@@ -56,10 +56,11 @@ export default {
   mounted() {
     if (this.list.length == 0) {
       this.loading = true;
-      request.get("articles/init").then(response => {
+      getToken().then(response => {
         console.info(response.data);
         this.token = response.data.token;
         window.localStorage.setItem("token", response.data.token);
+        this.loadMore();
       });
     }
   },
