@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div class="container">
-      <keep-alive include="HelloWorld">
-        <router-view></router-view>
-      </keep-alive>
+      <transition name="fade" mode="out-in">
+          <keep-alive include="HelloWorld">
+            <router-view></router-view>
+          </keep-alive>
+       </transition>
     </div>
   </div>
 </template>
@@ -11,8 +13,7 @@
 <script>
 export default {
   name: "app",
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
@@ -33,7 +34,7 @@ a {
   z-index: 9999;
   width: 100%;
   margin-top: -20px;
-  text-align: center;
+  text-align: left;
   color: white;
   font-size: 25px;
   padding-top: 5px;

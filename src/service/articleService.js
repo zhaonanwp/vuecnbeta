@@ -13,3 +13,10 @@ export function getToken(){
         method:'get'
     })
 }
+
+export function getDetail(sid){
+    return request({
+        url:'/articles/detail/'+sid,
+        method:'get'
+    })
+}

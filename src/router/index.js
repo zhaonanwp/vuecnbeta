@@ -17,10 +17,18 @@ export default new VueRouter({
             component: HelloWorld
         },
         {
-            path:'/detail/:sid',
-            name:'detail',
-            component:ArticleDetail,
+            path: '/detail/:sid',
+            name: 'detail',
+            component: ArticleDetail,
             props: true
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        debugger;
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }
 })

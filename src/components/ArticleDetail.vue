@@ -1,8 +1,7 @@
 <template>
-
     <div>
         <div class="header">
-          <button @:click="goBack">返回</button>
+          <button v-on:click="goBack">返回</button>
         </div>
         <div class="title">
             {{title}}
@@ -15,7 +14,7 @@
 </template>
 <script>
 import axios from "axios";
-
+import {getDetail} from '@/service/articleService'
 export default {
   name: "articleDetail",
   props: ["sid"],
@@ -35,8 +34,8 @@ export default {
   },
   methods: {
     loadHtml(sid) {
-      debugger;
-      axios.get("http://localhost:1337/articles/detail/" + sid).then(res => {
+      
+      getDetail(sid).then(res => {
         console.info(res);
         let data = res.data;
         this.title = data.title;
@@ -45,6 +44,7 @@ export default {
       });
     }, 
     goBack() {
+      debugger;
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
   },

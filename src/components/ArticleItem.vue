@@ -11,7 +11,7 @@
                 </div>
             </div>  
             <div class="item">
-                <!--<img class="thumb" :src="thumb"/>-->
+                <!-- <img class="thumb" :src="thumb"/> -->
             </div>
         </div>
         <hr />    

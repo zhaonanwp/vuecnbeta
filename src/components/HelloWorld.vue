@@ -23,7 +23,7 @@
 
 <script>
 import ArticleItem from "@/components/ArticleItem";
-import {getList,getToken} from '@/service/articleService';
+import { getList, getToken } from "@/service/articleService";
 
 export default {
   name: "HelloWorld",
@@ -50,8 +50,6 @@ export default {
       this.loading = true;
       this.page++;
       this.loadMore();
-
-      console.info("this way");
     }
   },
   mounted() {
@@ -69,7 +67,12 @@ export default {
     scroll: {
       bind: function(el, binding) {
         window.addEventListener("scroll", () => {
-          this.loadMore();
+          if (el.clientHeight > 0 && 
+              document.documentElement.scrollTop + window.innerHeight >= el.clientHeight) 
+          {
+            let fnc = binding.value;
+            fnc();
+          }
         });
       }
     }
