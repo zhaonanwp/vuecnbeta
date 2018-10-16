@@ -1,7 +1,7 @@
 <template>
   <div class="hello" v-scroll="next">
     <div class="header">
-      Cnbeta
+      cnbeta
     </div>
     <article-item 
       v-for="article in list"

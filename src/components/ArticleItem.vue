@@ -31,13 +31,15 @@
         flex-wrap: nowrap;
     }
     .item{
-        flex: 0 1 auto
+        flex: 0 1 auto;
     }
     .title{
         font-size: 18px;
         line-height: 1.7em;
         margin-bottom: 8px;
         color: #000;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .summary{
         color: #737373;
@@ -70,8 +72,9 @@
         font-size:12px;
         margin-bottom: 10px;
         display: flex;
-
-        justify-content: space-between 
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: space-between; 
     }
 
 </style>

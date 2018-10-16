@@ -1,20 +1,20 @@
 <template>
-    <div>
+    <div class="detail">
         <div class="header">
-          <button v-on:click="goBack">返回</button>
+          <img class="close" src="../assets/close.png" v-on:click="goBack">
         </div>
-        <div class="title">
+        
+        <h3 class="detail-title">
             {{title}}
+        </h3>
+        <div class="summary" v-html="summary">
         </div>
-        <p v-html="summary">
-        </p>
         <div class="content" v-html="content">
         </div>
     </div>
 </template>
 <script>
-import axios from "axios";
-import {getDetail} from '@/service/articleService'
+import { getDetail } from "@/service/articleService";
 export default {
   name: "articleDetail",
   props: ["sid"],
@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     loadHtml(sid) {
-      
       getDetail(sid).then(res => {
         console.info(res);
         let data = res.data;
@@ -42,7 +41,7 @@ export default {
         this.summary = data.summary;
         this.content = data.content;
       });
-    }, 
+    },
     goBack() {
       debugger;
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
@@ -55,5 +54,37 @@ export default {
 </script>
 
 <style>
-  
+.detail {
+  overflow: auto;
+  font-family: "DENGXIAN";
+}
+.detail-title{
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+.summary{
+  padding-left:20px;
+  padding-right: 20px;
+}
+.content{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.close {
+  width: 15px;
+  height: 15px;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.header{
+  border-bottom: 1px;
+  border-color: black;
+}
 </style>

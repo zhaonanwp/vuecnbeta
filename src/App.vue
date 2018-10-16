@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <div class="container">
-      <transition name="fade" mode="out-in">
-          <keep-alive include="HelloWorld">
-            <router-view></router-view>
-          </keep-alive>
-       </transition>
+        <keep-alive include="HelloWorld">
+          <router-view></router-view>
+        </keep-alive>
     </div>
   </div>
 </template>
@@ -29,7 +27,6 @@ a {
 }
 .header {
   position: fixed;
-  background-color: cadetblue;
   height: 30px;
   z-index: 9999;
   width: 100%;
