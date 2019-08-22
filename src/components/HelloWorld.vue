@@ -13,6 +13,7 @@
       v-bind:thumb="article.thumb"
       v-bind:mview="article.mview"
       v-bind:sid="article.sid"
+      v-bind:category="article.label.class"
     >
     </article-item>
     <div class="bottom">

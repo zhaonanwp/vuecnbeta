@@ -24,7 +24,6 @@ export default new VueRouter({
         }
     ],
     scrollBehavior(to, from, savedPosition) {
-        debugger;
         if (savedPosition) {
             return savedPosition
         } else {

@@ -14,9 +14,9 @@ export function getToken(){
     })
 }
 
-export function getDetail(sid){
+export function getDetail(category,sid){
     return request({
-        url:'/articles/detail/'+sid,
+        url:'/articles/detail/'+category+'/'+sid,
         method:'get'
     })
 }
